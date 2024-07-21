@@ -1,0 +1,142 @@
+digraph G {
+    rankdir=TB; // Top to Bottom layout
+    node [shape=rect, style=filled, fontname="Arial", fontsize=12, margin=0.2];
+    edge [color=black, fontname="Arial", fontsize=10, arrowhead=vee, arrowsize=0.8];
+
+    // Main node
+    Almon [label="Almon", shape=ellipse, style=filled, color="#4B9CD3", fontcolor=white, fontsize=18, fontname="Arial"];
+
+    // Core cluster
+    subgraph cluster_core {
+        label="Core";
+        color="#2E86C1";
+        style=solid;
+        fontcolor=white;
+        bgcolor="#D6EAF8";
+
+        apps;
+        asgi_py [label="asgi.py", shape=rect, style=filled, color="#AED6F1"];
+        init_py [label="__init__.py", shape=rect, style=filled, color="#AED6F1"];
+        settings;
+        urls_py [label="urls.py", shape=rect, style=filled, color="#AED6F1"];
+        wsgi_py [label="wsgi.py", shape=rect, style=filled, color="#AED6F1"];
+
+        // Apps cluster
+        subgraph cluster_apps {
+            label="Apps";
+            color="#1F618D";
+            style=dotted;
+            fontcolor=black;
+            bgcolor="#E8F6F3";
+
+            users;
+        }
+
+        // Settings cluster
+        subgraph cluster_settings {
+            label="Settings";
+            color="#1F618D";
+            style=dotted;
+            fontcolor=black;
+            bgcolor="#E8F6F3";
+
+            base_py [label="base.py", shape=rect, style=filled, color="#A2D9CE"];
+            init_py_settings [label="__init__.py", shape=rect, style=filled, color="#A2D9CE"];
+            local_py [label="local.py", shape=rect, style=filled, color="#A2D9CE"];
+            production_py [label="production.py", shape=rect, style=filled, color="#A2D9CE"];
+        }
+    }
+
+    // Static cluster
+    subgraph cluster_static {
+        label="Static";
+        color="#28B463";
+        style=solid;
+        fontcolor=white;
+        bgcolor="#D5F5E3";
+
+        assets [label="assets/", shape=rect, style=filled, color="#A9DFBF"];
+        css;
+        js;
+
+        // CSS cluster
+        subgraph cluster_css {
+            label="CSS";
+            color="#1E8449";
+            style=dotted;
+            fontcolor=black;
+            bgcolor="#EAF2F8";
+            style_css [label="style.css", shape=rect, style=filled, color="#58D68D"];
+        }
+
+        // JS cluster
+        subgraph cluster_js {
+            label="JS";
+            color="#1E8449";
+            style=dotted;
+            fontcolor=black;
+            bgcolor="#EAF2F8";
+            script_js [label="script.js", shape=rect, style=filled, color="#58D68D"];
+        }
+    }
+
+    // Templates cluster
+    subgraph cluster_templates {
+        label="Templates";
+        color="#E74C3C";
+        style=solid;
+        fontcolor=white;
+        bgcolor="#FADBD8";
+
+        base_html [label="base.html", shape=rect, style=filled, color="#F5B7B1"];
+        users;
+        
+        // Users cluster
+        subgraph cluster_users_templates {
+            label="Users";
+            color="#C0392B";
+            style=dotted;
+            fontcolor=black;
+            bgcolor="#F9EBEA";
+            home_html [label="home.html", shape=rect, style=filled, color="#F1948A"];
+        }
+    }
+
+    // Root level
+    Makefile [label="Makefile", shape=rect, style=filled, color="#BDC3C7"];
+    manage_py [label="manage.py", shape=rect, style=filled, color="#BDC3C7"];
+    media [label="media/", shape=rect, style=filled, color="#BDC3C7"];
+
+    // Connections
+    Almon -> core;
+    Almon -> Makefile;
+    Almon -> manage_py;
+    Almon -> media;
+    Almon -> static;
+    Almon -> templates;
+
+    core -> apps;
+    core -> asgi_py;
+    core -> init_py;
+    core -> settings;
+    core -> urls_py;
+    core -> wsgi_py;
+
+    apps -> users;
+
+    settings -> base_py;
+    settings -> init_py_settings;
+    settings -> local_py;
+    settings -> production_py;
+
+    static -> assets;
+    static -> css;
+    static -> js;
+
+    css -> style_css;
+    js -> script_js;
+
+    templates -> base_html;
+    templates -> users;
+    users -> home_html;
+}
