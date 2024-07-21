@@ -53,7 +53,7 @@ AUTH_USER_MODEL = 'app_name.YourCustomUserModelName'
 Change this in `core/settings/base.py`:
 From:
 ```python
-ROOT_URLCONF = 'hello.urls'
+ROOT_URLCONF = 'app_name.urls'
 ```
 To:
 ```python
@@ -64,7 +64,7 @@ ROOT_URLCONF = 'core.urls'
 Change this in `core/settings/base.py`:
 From:
 ```python
-WSGI_APPLICATION = 'hello.wsgi.application'
+WSGI_APPLICATION = 'app_name.wsgi.application'
 ```
 To:
 ```python
