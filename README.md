@@ -102,11 +102,21 @@ This Python script automates the setup of a Django project with a specified stru
       make dbshell
       ```
 
+## Project Directory Structure
+
+Here is a visual representation of the project directory structure:
+
+![Directory Structure](images/structure.png)
+
 ## Notes
 
 - Before starting the development server, ensure you read `SETUP.md` to configure `base.py` properly.
+  
 - Ensure that Django is installed and available in your environment.
+  
 - The `Makefile` assumes you have `make` installed on your system. If not, you can install it using your package manager.
+  
 - I have also included a `.gitignore` file designed specifically for Django projects. This file helps you keep unnecessary files and directories out of your version control, ensuring a cleaner and more efficient repository.
+  
 
 
