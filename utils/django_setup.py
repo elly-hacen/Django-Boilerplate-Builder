@@ -1,6 +1,6 @@
 import subprocess
 from pathlib import Path
-from .create_directories import create_directories, setup_templates_and_static
+from .create_directories import create_directories, setup_templates_and_static, initialize_apps_dir
 from .move_files import move_files
 from .initialize_settings_files import initialize_settings_files
 from .remove_directory_if_empty import remove_directory_if_empty
@@ -26,7 +26,7 @@ def create_django_project(project_name: str, app_name: str) -> None:
 
         directories = [core_dir, app_dir, settings_dir, templates_dir, static_dir, media_dir]
         create_directories(directories)
-
+        
         move_files(
             source_dir=project_dir,
             destination_dir=core_dir,
@@ -47,6 +47,7 @@ def create_django_project(project_name: str, app_name: str) -> None:
         
         update_asgi_and_wsgi_files(project_name)
         
+        initialize_apps_dir(app_dir)
         
     except subprocess.CalledProcessError as e:
         print(f"Error creating Django project: {e}")
