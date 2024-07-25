@@ -5,6 +5,15 @@ def create_directories(paths: List[Path]) -> None:
     """Create directories if they do not exist."""
     for path in paths:
         path.mkdir(parents=True, exist_ok=True)
+        
+
+def initialize_apps_dir(app_dir: str):
+  project_path = Path(app_dir)
+  init_file_path = project_path / '__init__.py'
+  if not init_file_path.exists():
+        init_file_path.touch()
+  
+   
 
 def setup_templates_and_static(project_name: str, app_name: str) -> None:
     """Create the templates and static directory structure for a Django project."""
