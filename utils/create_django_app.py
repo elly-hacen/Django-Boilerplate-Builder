@@ -50,6 +50,7 @@ urlpatterns = [
     views_py_content = f"""
 from django.shortcuts import render
 
+
 def home(request):
     return render(request, '{app_name}/home.html')
     """
@@ -57,6 +58,7 @@ def home(request):
 
     apps_py_content = f"""
 from django.apps import AppConfig
+
 
 class QuizzesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
